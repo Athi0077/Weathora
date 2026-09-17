@@ -32,6 +32,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const { data } = await api.post('/auth/login', { email, password });
     if (data.success) {
+      if (data.token) localStorage.setItem('token', data.token);
       setUser(data.user);
       setIsAuthenticated(true);
     }
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (name, email, password, location) => {
     const { data } = await api.post('/auth/signup', { name, email, password, location });
     if (data.success) {
+      if (data.token) localStorage.setItem('token', data.token);
       setUser(data.user);
       setIsAuthenticated(true);
     }
@@ -48,9 +50,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await api.post('/auth/logout');
-    setUser(null);
-    setIsAuthenticated(false);
+    try {
+      await api.post('/auth/logout');
+    } catch (e) {
+      console.error(e);
+    } finally {
+      localStorage.removeItem('token');
+      setUser(null);
+      setIsAuthenticated(false);
+    }
   };
 
   return (

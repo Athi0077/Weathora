@@ -74,11 +74,12 @@ const signup = async (req, res, next) => {
     });
 
     if (user) {
-      generateTokenAndSetCookie(res, user._id);
+      const token = generateTokenAndSetCookie(res, user._id);
       
       res.status(201).json({
         success: true,
         message: 'Signup successful',
+        token,
         user: {
           id: user._id,
           name: user.name,
@@ -125,11 +126,12 @@ const login = async (req, res, next) => {
       throw new Error('Invalid email or password');
     }
 
-    generateTokenAndSetCookie(res, user._id);
+    const token = generateTokenAndSetCookie(res, user._id);
 
     res.status(200).json({
       success: true,
       message: 'Login successful',
+      token,
       user: {
         id: user._id,
         name: user.name,
