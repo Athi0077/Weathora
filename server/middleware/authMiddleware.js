@@ -5,12 +5,17 @@ const protect = async (req, res, next) => {
   let token;
 
   // Check if token exists in cookies
-  if (req.cookies && req.cookies.jwt) {
+  if (req.cookies && req.cookies.jwt && req.cookies.jwt !== '') {
     token = req.cookies.jwt;
   } 
   // Fallback to Bearer token in headers (useful for testing or future mobile app)
-  else if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+  if (!token && req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
+  }
+  
+  // Clean up 'undefined' string if it accidentally got saved
+  if (token === 'undefined') {
+    token = null;
   }
 
   if (!token) {
