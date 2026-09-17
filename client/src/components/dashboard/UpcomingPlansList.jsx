@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Map, Compass, Briefcase } from 'lucide-react';
+import { ArrowRight, Calendar, Map, Compass, Briefcase, MapPin } from 'lucide-react';
 
-const PlanItem = ({ icon: Icon, title, date, type }) => (
+const PlanItem = ({ icon: Icon, title, date, location, type }) => (
   <div className="flex items-center justify-between py-4 border-b border-default last:border-0 hover:bg-surface-hover transition-colors px-2 -mx-2 rounded-lg">
     <div className="flex items-center space-x-3">
       <div className="text-dim bg-surface-secondary p-2 rounded-lg">
@@ -10,8 +10,11 @@ const PlanItem = ({ icon: Icon, title, date, type }) => (
       </div>
       <div>
         <h4 className="text-sm font-semibold text-main">{title}</h4>
-        <div className="flex items-center text-xs text-sub mt-0.5 space-x-2">
+        <div className="flex items-center text-xs text-sub mt-0.5 space-x-3">
           <span className="flex items-center"><Calendar size={12} className="mr-1" /> {date}</span>
+          {location && (
+            <span className="flex items-center"><MapPin size={12} className="mr-1" /> {location}</span>
+          )}
         </div>
       </div>
     </div>
@@ -75,6 +78,7 @@ const UpcomingPlansList = ({ plans, loading }) => {
                   icon={Icon}
                   title={plan.title || plan.activity || 'Activity'}
                   date={formattedDate}
+                  location={plan.location?.name}
                   type={planType}
                 />
               );
