@@ -43,6 +43,7 @@ const getCurrentWeather = async (lat, lon) => {
     });
     return normalizeCurrentWeather(response.data);
   } catch (error) {
+    console.error('Weather API Error (Current):', error.response?.data || error.message);
     throw new Error('Failed to fetch current weather data');
   }
 };
@@ -117,6 +118,7 @@ const getCompleteWeatherData = async (lat, lon) => {
       forecast
     };
   } catch (error) {
+    console.error('Weather API Error (Complete):', error.response?.data || error.message);
     throw new Error('Failed to fetch complete weather data');
   }
 };
