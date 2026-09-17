@@ -1,16 +1,16 @@
 const axios = require('axios');
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'liquid/lfm-2.5-2.6b:free';
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini';
 const BASE_URL = 'https://openrouter.ai/api/v1';
 
 const FREE_MODELS = [
+  'openai/gpt-4o-mini',
   'liquid/lfm-2.5-2.6b:free',
   'nvidia/nemotron-3.5-lightning:free',
   'google/gemma-4-31b-it:free',
   'nex-agi/nex-n2.5-pro:free',
-  'z-ai/glm-5.2:free',
-  'poolside/laguna-s-2.1:free'
+  'z-ai/glm-5.2:free'
 ];
 
 const generateAIResponse = async (prompt, systemInstruction) => {
