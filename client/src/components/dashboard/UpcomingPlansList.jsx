@@ -88,7 +88,7 @@ const UpcomingPlansList = ({ plans, loading }) => {
 
       <div className="mt-4 pt-4 border-t border-default">
         <Link 
-          to="/planner" 
+          to="/my-trips" 
           className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm group transition-colors"
         >
           <span>View All Plans</span>
