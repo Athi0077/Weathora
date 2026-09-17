@@ -114,7 +114,12 @@ const FloatingAIAssistant = () => {
       }
     } catch (error) {
       console.error('Chat error:', error);
-      setMessages([...newMessages, { role: 'assistant', content: 'I am sorry, I am having trouble connecting right now. Please try again later.' }]);
+      const errorMsg = error.response?.data?.message || 'I am sorry, I am having trouble connecting right now. Please try again later.';
+      setMessages(prev => [...prev, { 
+        id: Date.now(), 
+        role: 'assistant', 
+        content: errorMsg 
+      }]);
     } finally {
       setIsLoading(false);
     }

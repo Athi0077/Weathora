@@ -76,7 +76,14 @@ const generateAIResponse = async (prompt, systemInstruction) => {
 
   // If all models fail, throw the last error
   console.error('All free AI models failed. Last error:', lastErrorDetails);
-  throw new Error(`AI error: All free models are currently overloaded or rate-limited. Last error: ${lastErrorDetails}`);
+  
+  if (lastErrorDetails && lastErrorDetails.includes('402')) {
+    throw new Error('OpenRouter credits required. Please add credits to your account to use this model.');
+  } else if (lastErrorDetails && lastErrorDetails.includes('429')) {
+    throw new Error('OpenRouter daily free limit exceeded. Please add credits to your account to continue.');
+  }
+  
+  throw new Error('AI Service is temporarily unavailable. Please try again later.');
 };
 
 
