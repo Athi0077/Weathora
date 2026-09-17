@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
           setIsAuthenticated(true);
         }
       } catch (error) {
+        localStorage.removeItem('token');
         setUser(null);
         setIsAuthenticated(false);
       } finally {
