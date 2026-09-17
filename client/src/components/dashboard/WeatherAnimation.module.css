@@ -1,0 +1,156 @@
+.weatherBanner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.weatherBanner[data-condition="Thunderstorm"],
+.weatherBanner[data-condition="Rain"],
+.weatherBanner[data-condition="Snow"] {
+  background: linear-gradient(to bottom, rgba(148, 163, 184, 0.3), transparent);
+}
+
+.weatherBanner[data-condition="Clear"] {
+  background: linear-gradient(to bottom, rgba(254, 240, 138, 0.2), transparent);
+}
+
+/* Animations */
+@keyframes moveLeftRight {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes moveRightLeft {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100px); }
+}
+
+@keyframes floatSun {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+}
+
+@keyframes rainFall {
+  0% { transform: translateY(-20px) scaleY(1); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(200px) scaleY(1.5); opacity: 0; }
+}
+
+@keyframes snowFall {
+  0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateY(200px) translateX(20px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes flashLightning {
+  0%, 95%, 98%, 100% { opacity: 0; }
+  96%, 99% { opacity: 0.8; }
+}
+
+@keyframes fogDrift {
+  0% { transform: translateX(-5vw); opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { transform: translateX(5vw); opacity: 0.3; }
+}
+
+/* Particle Classes */
+.cloud {
+  position: absolute;
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+}
+
+.cloudLight {
+  color: #f8fafc;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.cloudDark {
+  color: #94a3b8;
+  opacity: 0.8;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.sun {
+  position: absolute;
+  font-size: 3.5rem;
+  color: #fbbf24;
+  filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.6));
+  animation: floatSun 6s ease-in-out infinite;
+}
+
+.rainDrop {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: linear-gradient(to bottom, rgba(56, 189, 248, 0), rgba(56, 189, 248, 0.8));
+  border-radius: 2px;
+}
+
+.snowFlake {
+  position: absolute;
+  font-size: 1rem;
+  color: #ffffff;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+.lightning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 11;
+  animation: flashLightning 8s infinite;
+}
+
+.fog {
+  position: absolute;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(241, 245, 249, 0.7), transparent);
+  animation: fogDrift 15s ease-in-out infinite alternate;
+  filter: blur(10px);
+}
+
+/* Base animation classes */
+.moveLR {
+  animation: moveLeftRight linear infinite;
+}
+
+.moveRL {
+  animation: moveRightLeft linear infinite;
+}
+
+.fallRain {
+  animation: rainFall linear infinite;
+}
+
+.fallSnow {
+  animation: snowFall linear infinite;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .weatherBanner * {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .lightning, .fog {
+    display: none;
+  }
+  
+  .rainDrop, .snowFlake {
+    opacity: 0.5;
+  }
+}

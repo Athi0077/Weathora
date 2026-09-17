@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  --border-color: #e2e8f0;
+
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-card: #111827;
+  --bg-card-hover: #1e293b;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --border-color: #334155;
+
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+@theme {
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-900: #0c4a6e;
+  
+  --color-accent-500: #f59e0b;
+
+  --color-background: var(--bg-primary);
+  --color-surface: var(--bg-card);
+  --color-surface-secondary: var(--bg-secondary);
+  --color-surface-hover: var(--bg-card-hover);
+  --color-main: var(--text-primary);
+  --color-sub: var(--text-secondary);
+  --color-dim: var(--text-muted);
+  --color-default: var(--border-color);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-main antialiased font-sans transition-colors duration-300;
+  }
+}
+
+/* Custom Utilities for smooth transitions */
+@layer utilities {
+  .glass-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -1px var(--shadow-color);
+    @apply rounded-2xl transition-colors duration-300;
+  }
+  
+  .glass-card-hover {
+    @apply hover:shadow-md hover:-translate-y-1 transition-all duration-300;
+  }
+  
+  .theme-transition {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-bottom: 5rem !important;
+  }
+}
