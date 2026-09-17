@@ -57,17 +57,25 @@ const UpcomingPlansList = ({ plans, loading }) => {
         ) : (
           <div className="space-y-1">
             {plans.map((plan, index) => {
+              const planType = plan.type || 'Outdoor';
               let Icon = Map;
-              if (plan.type === 'Outdoor') Icon = Compass;
-              if (plan.type === 'Work') Icon = Briefcase;
+              if (planType === 'Outdoor') Icon = Compass;
+              if (planType === 'Work') Icon = Briefcase;
+              
+              // Format date properly
+              const formattedDate = new Date(plan.date).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+              });
               
               return (
                 <PlanItem 
                   key={index}
                   icon={Icon}
-                  title={plan.title}
-                  date={plan.date}
-                  type={plan.type}
+                  title={plan.title || plan.activity || 'Activity'}
+                  date={formattedDate}
+                  type={planType}
                 />
               );
             })}
