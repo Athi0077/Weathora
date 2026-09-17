@@ -8,10 +8,12 @@ const generateTokenAndSetCookie = (res, userId) => {
     expiresIn: '7d',
   });
 
+  const isDev = process.env.NODE_ENV === 'development';
+  
   const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: !isDev, // true for production/render, false for local dev
+    sameSite: !isDev ? 'none' : 'lax', // 'none' required for cross-origin (Vercel -> Render)
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   };
 
@@ -169,8 +171,11 @@ const getMe = async (req, res, next) => {
 // @access  Public
 const logout = async (req, res, next) => {
   try {
+    const isDev = process.env.NODE_ENV === 'development';
     res.cookie('jwt', '', {
       httpOnly: true,
+      secure: !isDev,
+      sameSite: !isDev ? 'none' : 'lax',
       expires: new Date(0),
     });
     

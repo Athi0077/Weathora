@@ -21,6 +21,8 @@ const { startWeatherAlertScheduler } = require('./jobs/weatherAlertScheduler');
 const { startTripReminderScheduler } = require('./jobs/tripReminderScheduler');
 
 const app = express();
+app.set('trust proxy', 1); // Trust first proxy (Render load balancer) for secure cookies
+
 
 const dns = require("node:dns")
 dns.setServers(['8.8.8.8', '8.8.4.4'])
