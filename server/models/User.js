@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: 'UTC'
     },
+    isAdmin: {
+      type: Boolean,
+      default: false
+    },
     notificationPreferences: {
       weatherAlerts: { type: Boolean, default: true },
       tripReminders: { type: Boolean, default: true },

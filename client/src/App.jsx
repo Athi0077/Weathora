@@ -17,6 +17,8 @@ import Notifications from './pages/Notifications';
 import AIReports from './pages/AIReports';
 import AIReportDetails from './pages/AIReportDetails';
 import Settings from './pages/Settings';
+import Reviews from './pages/Reviews';
+import AdminReviews from './pages/AdminReviews';
 import MobileNavbar from './components/layout/MobileNavbar';
 import WeatherAnimation from './components/dashboard/WeatherAnimation';
 import FloatingAIAssistant from './components/dashboard/FloatingAIAssistant';
@@ -159,6 +161,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Settings />
+          </ProtectedRoute>
+        } 
+      />
+      <Route path="/reviews" element={<Reviews />} />
+      <Route 
+        path="/admin/reviews" 
+        element={
+          <ProtectedRoute>
+            <AdminReviews />
           </ProtectedRoute>
         } 
       />

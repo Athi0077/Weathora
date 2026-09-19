@@ -3,7 +3,7 @@ import logoImg from '../assets/logo.png';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Bell, Check, Trash2, CloudLightning, Map, Settings, FileText, LayoutDashboard, CloudSun, Compass, Briefcase, Sparkles, Cloud, LogOut } from 'lucide-react';
+import { Bell, Check, Trash2, CloudLightning, Map, Settings, FileText, LayoutDashboard, CloudSun, Compass, Briefcase, Sparkles, Cloud, LogOut , Star} from 'lucide-react';
 import notificationService from '../services/notificationService';
 
 
@@ -155,8 +155,10 @@ const Notifications = () => {
 
       <div className="flex-1 flex max-w-7xl mx-auto w-full">
         <aside className="hidden md:block w-64 flex-shrink-0 border-r border-default py-8 pr-6 pl-4 lg:pl-8 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
-          <nav className="space-y-1">
-            <div className="px-4 pb-2 text-xs font-semibold text-dim uppercase tracking-wider">Menu</div>
+                    <nav className="space-y-1">
+            <div className="px-4 pb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              Menu
+            </div>
             <SidebarItem icon={LayoutDashboard} label="Dashboard" onClick={() => navigate('/dashboard')} active={false} />
             <SidebarItem icon={CloudSun} label="Current Weather" onClick={() => navigate('/current-weather')} active={false} />
             <SidebarItem icon={Map} label="Trip Planner" onClick={() => navigate('/trip-planner')} active={false} />
@@ -164,6 +166,7 @@ const Notifications = () => {
             <SidebarItem icon={Compass} label="Outdoor Activity" onClick={() => navigate('/outdoor-activity')} active={false} />
             <SidebarItem icon={Sparkles} label="Work Planner" onClick={() => navigate('/work-planner')} active={false} />
             <SidebarItem icon={FileText} label="AI Reports" onClick={() => navigate('/ai-reports')} active={false} />
+            <SidebarItem icon={Star} label="Reviews" onClick={() => navigate('/reviews')} active={false} />
             <SidebarItem icon={Settings} label="Settings" onClick={() => navigate('/settings')} active={false} />
           </nav>
         </aside>

@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { 
   LogOut, CloudSun, Map, Compass, Briefcase, Sparkles, Cloud, LayoutDashboard, Loader2 
-, FileText, Settings} from 'lucide-react';
+, FileText, Settings, Star} from 'lucide-react';
 import tripService from '../services/tripService';
 import TripCard from '../components/trip/TripCard';
 
@@ -93,8 +93,8 @@ const MyTrips = () => {
       <div className="flex-1 flex max-w-7xl mx-auto w-full">
         {/* Sidebar */}
         <aside className="hidden md:block w-64 flex-shrink-0 border-r border-default py-8 pr-6 pl-4 lg:pl-8 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
-                    <nav className="space-y-1">
-            <div className="px-4 pb-2 text-xs font-semibold text-dim uppercase tracking-wider">
+                              <nav className="space-y-1">
+            <div className="px-4 pb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
               Menu
             </div>
             <SidebarItem icon={LayoutDashboard} label="Dashboard" onClick={() => navigate('/dashboard')} active={false} />
@@ -104,6 +104,7 @@ const MyTrips = () => {
             <SidebarItem icon={Compass} label="Outdoor Activity" onClick={() => navigate('/outdoor-activity')} active={false} />
             <SidebarItem icon={Sparkles} label="Work Planner" onClick={() => navigate('/work-planner')} active={false} />
             <SidebarItem icon={FileText} label="AI Reports" onClick={() => navigate('/ai-reports')} active={false} />
+            <SidebarItem icon={Star} label="Reviews" onClick={() => navigate('/reviews')} active={false} />
             <SidebarItem icon={Settings} label="Settings" onClick={() => navigate('/settings')} active={false} />
           </nav>
         </aside>

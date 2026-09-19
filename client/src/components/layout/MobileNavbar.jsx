@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, CloudSun, Map, Compass, Menu, X, Briefcase, Sparkles, FileText, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, CloudSun, Map, Compass, Menu, X, Briefcase, Sparkles, FileText, Settings, LogOut, Star } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import ThemeToggle from '../common/ThemeToggle';
 
@@ -26,6 +26,7 @@ const MobileNavbar = () => {
     { icon: Briefcase, label: 'My Trips', path: '/my-trips' },
     { icon: Sparkles, label: 'Work Planner', path: '/work-planner' },
     { icon: FileText, label: 'AI Reports', path: '/ai-reports' },
+    { icon: Star, label: 'Reviews', path: '/reviews' },
     { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 

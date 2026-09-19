@@ -16,6 +16,7 @@ const aiReportRoutes = require('./routes/aiReportRoutes');
 const devRoutes = require('./routes/devRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 const { startReportScheduler } = require('./jobs/reportScheduler');
 const { startWeatherAlertScheduler } = require('./jobs/weatherAlertScheduler');
 const { startTripReminderScheduler } = require('./jobs/tripReminderScheduler');
@@ -84,6 +85,7 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/ai-reports', aiReportRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/expenses', expenseRoutes);
+app.use('/api/reviews', reviewRoutes);
 app.use('/api/dev', devRoutes);
 
 // Error Handling
